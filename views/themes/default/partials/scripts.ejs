@@ -1,0 +1,15 @@
+<!-- 主题特定的JavaScript -->
+<script>
+// 移动端菜单切换
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const navigation = document.querySelector('.main-navigation');
+    
+    if (mobileToggle && navigation) {
+        mobileToggle.addEventListener('click', function() {
+            navigation.classList.toggle('mobile-open');
+            this.classList.toggle('active');
+        });
+    }
+});
+</script>

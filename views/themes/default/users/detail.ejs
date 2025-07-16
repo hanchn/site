@@ -1,0 +1,71 @@
+<div class="page-header">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">首页</a> > 
+            <a href="/users">用户</a> > 
+            <span><%= user.name %></span>
+        </div>
+        <h1><%= title %></h1>
+    </div>
+</div>
+
+<section class="user-detail-section">
+    <div class="container">
+        <div class="user-detail-grid">
+            <div class="user-profile">
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <%= user.name.charAt(0).toUpperCase() %>
+                    </div>
+                    <div class="profile-info">
+                        <h2 class="profile-name"><%= user.name %></h2>
+                        <p class="profile-email"><%= user.email %></p>
+                        <div class="profile-meta">
+                            <div class="meta-item">
+                                <span class="meta-label">用户ID:</span>
+                                <span class="meta-value"><%= user.id %></span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">注册时间:</span>
+                                <span class="meta-value">2024-01-01</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">状态:</span>
+                                <span class="meta-value status-active">活跃</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="user-details">
+                <div class="details-card">
+                    <h3>详细信息</h3>
+                    <div class="details-content">
+                        <p>这里可以显示用户的详细信息，如个人简介、联系方式、偏好设置等。</p>
+                        <div class="user-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">15</span>
+                                <span class="stat-label">文章</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">42</span>
+                                <span class="stat-label">评论</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">8</span>
+                                <span class="stat-label">关注</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="user-actions">
+            <a href="/users" class="btn btn-secondary">返回用户列表</a>
+            <a href="/" class="btn btn-primary">返回首页</a>
+            <button class="btn btn-warning">编辑用户</button>
+        </div>
+    </div>
+</section>

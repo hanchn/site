@@ -1,0 +1,43 @@
+<div class="error-page">
+    <div class="container">
+        <div class="error-content">
+            <div class="error-icon">
+                <% if (error && error.status === 404) { %>
+                    🔍
+                <% } else { %>
+                    ⚠️
+                <% } %>
+            </div>
+            
+            <h1 class="error-title"><%= title %></h1>
+            <p class="error-message"><%= message %></p>
+            
+            <% if (error && error.status) { %>
+                <div class="error-status">
+                    <span class="status-code"><%= error.status %></span>
+                    <span class="status-text">
+                        <% if (error.status === 404) { %>
+                            页面未找到
+                        <% } else if (error.status === 500) { %>
+                            服务器内部错误
+                        <% } else { %>
+                            错误
+                        <% } %>
+                    </span>
+                </div>
+            <% } %>
+            
+            <% if (error && error.stack && typeof error.stack === 'string' && process.env.NODE_ENV === 'development') { %>
+                <details class="error-details">
+                    <summary>错误详情 (开发模式)</summary>
+                    <pre class="error-stack"><%= error.stack %></pre>
+                </details>
+            <% } %>
+            
+            <div class="error-actions">
+                <a href="/" class="btn btn-primary">返回首页</a>
+                <button onclick="history.back()" class="btn btn-secondary">返回上页</button>
+            </div>
+        </div>
+    </div>
+</div>
