@@ -230,11 +230,23 @@
     >
       <div class="video-thumbnail">
         <a href="<%= video.url %>">
+          <% if (video.thumbnail) { %>
           <img
             src="<%= video.thumbnail %>"
             alt="<%= video.title %>"
             loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
           />
+          <% } %>
+          <div
+            class="thumbnail-placeholder"
+            style="<%= video.thumbnail ? 'display: none;' : 'display: flex;' %>"
+          >
+            <svg viewBox="0 0 24 24" class="play-icon">
+              <path d="M8 5v14l11-7z" fill="currentColor" />
+            </svg>
+            <span class="placeholder-text">视频封面</span>
+          </div>
           <div class="video-duration"><%= video.duration %></div>
         </a>
       </div>
@@ -245,12 +257,15 @@
             <img
               src="<%= video.author.avatar %>"
               alt="<%= video.author.displayName %>"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
             />
-            <% } else { %>
-            <div class="avatar-fallback">
+            <% } %>
+            <div
+              class="avatar-fallback"
+              style="<%= video.author.avatar ? 'display: none;' : 'display: flex;' %>"
+            >
               <%= video.author.displayName.charAt(0).toUpperCase() %>
             </div>
-            <% } %>
           </a>
         </div>
         <div class="video-details">
