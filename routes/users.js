@@ -1,41 +1,56 @@
-import express from 'express';
+const express = require('express');
 const router = express.Router();
+const dataService = require('../mock/services/dataService');
 
-// 用户列表
-const users = [
-  { id: 1, name: '张三', email: 'zhangsan@example.com' },
-  { id: 2, name: '李四', email: 'lisi@example.com' },
-  { id: 3, name: '王五', email: 'wangwu@example.com' }
-];
-
-// 获取所有用户
-router.get('/', (req, res) => {
-  res.render('users/index', {
-    title: '用户列表',
-    users: users,
-    pageStyle: 'users'  // 指定使用users.css
-  });
-});
-
-// 获取单个用户
-router.get('/:id', (req, res) => {
-  const userId = parseInt(req.params.id);
-  const user = users.find(u => u.id === userId);
-  
-  if (!user) {
-    return res.status(404).render('error', {
-      title: '用户未找到',
-      message: '指定的用户不存在',
-      error: { status: 404 },
-      pageStyle: 'error'  // 指定使用error.css
+/* GET users listing. */
+router.get('/', function(req, res, next) {
+  try {
+    const users = dataService.getUsers();
+    
+    res.render('users/index', {
+      title: 'VideoSite - 用户列表',
+      pageStyle: 'users',
+      currentPath: req.path,
+      users: users
     });
+  } catch (error) {
+    console.error('Error loading users page:', error);
+    next(error);
   }
-  
-  res.render('users/detail', {
-    title: `用户详情 - ${user.name}`,
-    user: user,
-    pageStyle: 'users'  // 指定使用users.css
-  });
 });
 
-export default router;
+/* GET user detail page. */
+router.get('/:id', function(req, res, next) {
+  try {
+    const userId = req.params.id;
+    const user = dataService.getUserById(userId);
+    
+    if (!user) {
+      return res.status(404).render('pages/error', {
+        title: 'VideoSite - 用户未找到',
+        pageStyle: 'error',
+        currentPath: req.path,
+        error: {
+          status: 404,
+          message: '用户未找到'
+        }
+      });
+    }
+    
+    // 获取用户的视频
+    const userVideos = dataService.getVideosByAuthor(userId, 20);
+    
+    res.render('users/detail', {
+      title: `VideoSite - ${user.displayName}`,
+      pageStyle: 'users',
+      currentPath: req.path,
+      user: user,
+      videos: userVideos
+    });
+  } catch (error) {
+    console.error('Error loading user detail page:', error);
+    next(error);
+  }
+});
+
+module.exports = router;

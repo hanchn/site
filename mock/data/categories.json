@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "科技",
+    "slug": "tech",
+    "description": "科技相关内容",
+    "color": "#007bff",
+    "icon": "tech"
+  },
+  {
+    "id": 2,
+    "name": "音乐",
+    "slug": "music",
+    "description": "音乐相关内容",
+    "color": "#e91e63",
+    "icon": "music"
+  },
+  {
+    "id": 3,
+    "name": "美食",
+    "slug": "food",
+    "description": "美食相关内容",
+    "color": "#ff9800",
+    "icon": "food"
+  },
+  {
+    "id": 4,
+    "name": "游戏",
+    "slug": "gaming",
+    "description": "游戏相关内容",
+    "color": "#9c27b0",
+    "icon": "gaming"
+  },
+  {
+    "id": 5,
+    "name": "教育",
+    "slug": "education",
+    "description": "教育学习内容",
+    "color": "#4caf50",
+    "icon": "education"
+  }
+]

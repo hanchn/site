@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "username": "techmaster",
+    "displayName": "科技大师",
+    "avatar": "/images/avatars/user1.jpg",
+    "email": "techmaster@example.com",
+    "subscriberCount": 125000,
+    "videoCount": 89,
+    "joinDate": "2022-01-15",
+    "verified": true,
+    "description": "专注于前端技术分享，带你探索Web开发的奥秘"
+  },
+  {
+    "id": 2,
+    "username": "musiclover",
+    "displayName": "音乐爱好者",
+    "avatar": "/images/avatars/user2.jpg",
+    "email": "music@example.com",
+    "subscriberCount": 89000,
+    "videoCount": 156,
+    "joinDate": "2021-08-20",
+    "verified": false,
+    "description": "分享最新流行音乐和经典老歌"
+  },
+  {
+    "id": 3,
+    "username": "codingpro",
+    "displayName": "编程高手",
+    "avatar": "/images/avatars/user3.jpg",
+    "email": "coding@example.com",
+    "subscriberCount": 234000,
+    "videoCount": 203,
+    "joinDate": "2020-03-10",
+    "verified": true,
+    "description": "JavaScript、Python、Go语言教程"
+  },
+  {
+    "id": 4,
+    "username": "foodie",
+    "displayName": "美食天地",
+    "avatar": "/images/avatars/user4.jpg",
+    "email": "food@example.com",
+    "subscriberCount": 567000,
+    "videoCount": 312,
+    "joinDate": "2019-11-05",
+    "verified": true,
+    "description": "家常菜制作教程，让美食更简单"
+  }
+]

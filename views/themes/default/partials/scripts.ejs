@@ -1,3 +1,35 @@
+<!-- 基础脚本 -->
+<script>
+// 基础工具函数
+window.utils = {
+  // 防抖函数
+  debounce: function(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  },
+  
+  // 节流函数
+  throttle: function(func, limit) {
+    let inThrottle;
+    return function() {
+      const args = arguments;
+      const context = this;
+      if (!inThrottle) {
+        func.apply(context, args);
+        inThrottle = true;
+        setTimeout(() => inThrottle = false, limit);
+      }
+    }
+  }
+};
+</script>
 <!-- 主题特定的JavaScript -->
 <script>
 // 移动端菜单切换

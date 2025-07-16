@@ -204,40 +204,58 @@
   <!-- 分类标签栏 -->
   <div class="category-tabs">
     <div class="tabs-container">
-      <button class="tab-item active">全部</button>
-      <button class="tab-item">音乐</button>
-      <button class="tab-item">游戏</button>
-      <button class="tab-item">新闻</button>
-      <button class="tab-item">体育</button>
-      <button class="tab-item">学习</button>
-      <button class="tab-item">科技</button>
-      <button class="tab-item">娱乐</button>
-      <button class="tab-item">生活</button>
-      <button class="tab-item">美食</button>
+      <button class="tab-item active" data-category="all">全部</button>
+      <% categories.forEach(category => { %>
+      <button class="tab-item" data-category="<%= category.slug %>">
+        <%= category.name %>
+      </button>
+      <% }); %>
     </div>
   </div>
 
   <!-- 视频网格 -->
   <div class="video-grid">
-    <!-- 视频卡片 -->
-    <div class="video-card">
+    <% videos.forEach(video => { %>
+    <div
+      class="video-card"
+      data-category="<%= video.category ? video.category.name : 'all' %>"
+    >
       <div class="video-thumbnail">
-        <img src="/images/video1.jpg" alt="视频缩略图" />
-        <div class="video-duration">10:24</div>
+        <a href="<%= video.url %>">
+          <img src="<%= video.thumbnail %>" alt="<%= video.title %>" />
+          <div class="video-duration"><%= video.duration %></div>
+        </a>
       </div>
       <div class="video-info">
         <div class="channel-avatar">
-          <img src="/images/channel1.jpg" alt="频道头像" />
+          <a href="/users/<%= video.author.id %>">
+            <img
+              src="<%= video.author.avatar %>"
+              alt="<%= video.author.displayName %>"
+            />
+          </a>
         </div>
         <div class="video-details">
-          <h3 class="video-title">如何学习Web开发 - 完整指南</h3>
+          <h3 class="video-title">
+            <a href="<%= video.url %>"><%= video.title %></a>
+          </h3>
           <div class="video-meta">
-            <div class="channel-name">科技频道</div>
-            <div class="video-stats">125万次观看 • 2天前</div>
+            <div class="channel-name">
+              <a href="/users/<%= video.author.id %>">
+                <%= video.author.displayName %> <% if (video.author.verified) {
+                %>
+                <span class="verified-badge">✓</span>
+                <% } %>
+              </a>
+            </div>
+            <div class="video-stats">
+              <%= video.formattedViewCount %>次观看 • <%=
+              video.formattedPublishDate %>
+            </div>
           </div>
         </div>
         <div class="video-menu">
-          <button class="menu-btn">
+          <button class="menu-btn" data-video-id="<%= video.id %>">
             <svg viewBox="0 0 24 24">
               <path
                 d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
@@ -247,91 +265,6 @@
         </div>
       </div>
     </div>
-
-    <!-- 重复更多视频卡片 -->
-    <div class="video-card">
-      <div class="video-thumbnail">
-        <img src="/images/video2.jpg" alt="视频缩略图" />
-        <div class="video-duration">15:32</div>
-      </div>
-      <div class="video-info">
-        <div class="channel-avatar">
-          <img src="/images/channel2.jpg" alt="频道头像" />
-        </div>
-        <div class="video-details">
-          <h3 class="video-title">最新流行音乐合集 2024</h3>
-          <div class="video-meta">
-            <div class="channel-name">音乐频道</div>
-            <div class="video-stats">89万次观看 • 1天前</div>
-          </div>
-        </div>
-        <div class="video-menu">
-          <button class="menu-btn">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 更多视频卡片... -->
-    <div class="video-card">
-      <div class="video-thumbnail">
-        <img src="/images/video3.jpg" alt="视频缩略图" />
-        <div class="video-duration">8:15</div>
-      </div>
-      <div class="video-info">
-        <div class="channel-avatar">
-          <img src="/images/channel3.jpg" alt="频道头像" />
-        </div>
-        <div class="video-details">
-          <h3 class="video-title">JavaScript 高级技巧分享</h3>
-          <div class="video-meta">
-            <div class="channel-name">编程教学</div>
-            <div class="video-stats">56万次观看 • 3天前</div>
-          </div>
-        </div>
-        <div class="video-menu">
-          <button class="menu-btn">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="video-card">
-      <div class="video-thumbnail">
-        <img src="/images/video4.jpg" alt="视频缩略图" />
-        <div class="video-duration">22:45</div>
-      </div>
-      <div class="video-info">
-        <div class="channel-avatar">
-          <img src="/images/channel4.jpg" alt="频道头像" />
-        </div>
-        <div class="video-details">
-          <h3 class="video-title">美食制作教程 - 家常菜</h3>
-          <div class="video-meta">
-            <div class="channel-name">美食天地</div>
-            <div class="video-stats">234万次观看 • 5天前</div>
-          </div>
-        </div>
-        <div class="video-menu">
-          <button class="menu-btn">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
+    <% }); %>
   </div>
 </div>

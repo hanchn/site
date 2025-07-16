@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "name": "科技频道",
+    "slug": "tech-channel",
+    "description": "最新科技资讯和技术教程",
+    "avatar": "/images/channels/tech.jpg",
+    "banner": "/images/banners/tech-banner.jpg",
+    "subscriberCount": 125000,
+    "videoCount": 89,
+    "ownerId": 1,
+    "verified": true,
+    "createdAt": "2022-01-15T00:00:00Z"
+  },
+  {
+    "id": 2,
+    "name": "音乐频道",
+    "slug": "music-channel",
+    "description": "分享各种类型的音乐",
+    "avatar": "/images/channels/music.jpg",
+    "banner": "/images/banners/music-banner.jpg",
+    "subscriberCount": 89000,
+    "videoCount": 156,
+    "ownerId": 2,
+    "verified": false,
+    "createdAt": "2021-08-20T00:00:00Z"
+  }
+]
