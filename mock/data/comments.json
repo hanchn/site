@@ -1,0 +1,87 @@
+[
+  {
+    "id": 1,
+    "videoId": 1,
+    "authorId": 2,
+    "content": "这个教程太棒了！讲解得非常清楚，对新手很友好。",
+    "likeCount": 15,
+    "dislikeCount": 0,
+    "publishDate": "2024-01-16T10:30:00Z",
+    "replies": [
+      {
+        "id": 101,
+        "authorId": 1,
+        "content": "谢谢支持！后续会继续更新更多内容。",
+        "likeCount": 8,
+        "publishDate": "2024-01-16T11:15:00Z",
+        "replyTo": "音乐达人小李"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "videoId": 1,
+    "authorId": 3,
+    "content": "能不能出一个进阶版的教程？这个基础版看完了，想学更深入的内容。",
+    "likeCount": 12,
+    "dislikeCount": 1,
+    "publishDate": "2024-01-16T14:20:00Z",
+    "replies": []
+  },
+  {
+    "id": 3,
+    "videoId": 2,
+    "authorId": 4,
+    "content": "这些歌曲选得真不错，很符合我的口味！",
+    "likeCount": 23,
+    "dislikeCount": 2,
+    "publishDate": "2024-01-16T16:45:00Z",
+    "replies": [
+      {
+        "id": 102,
+        "authorId": 2,
+        "content": "谢谢喜欢！我会继续分享好音乐的。",
+        "likeCount": 5,
+        "publishDate": "2024-01-16T17:30:00Z",
+        "replyTo": "美食家王师傅"
+      },
+      {
+        "id": 103,
+        "authorId": 1,
+        "content": "同感！特别是第三首，单曲循环了好久。",
+        "likeCount": 3,
+        "publishDate": "2024-01-16T18:00:00Z",
+        "replyTo": "美食家王师傅"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "videoId": 3,
+    "authorId": 1,
+    "content": "JavaScript的这些高级特性确实很实用，学到了很多！",
+    "likeCount": 18,
+    "dislikeCount": 0,
+    "publishDate": "2024-01-15T09:30:00Z",
+    "replies": []
+  },
+  {
+    "id": 5,
+    "videoId": 4,
+    "authorId": 2,
+    "content": "按照视频做了一遍，味道真的很棒！家人都很喜欢。",
+    "likeCount": 31,
+    "dislikeCount": 1,
+    "publishDate": "2024-01-13T20:15:00Z",
+    "replies": [
+      {
+        "id": 104,
+        "authorId": 4,
+        "content": "太好了！能帮到大家我很开心，记得关注我获取更多美食教程哦！",
+        "likeCount": 12,
+        "publishDate": "2024-01-13T21:00:00Z",
+        "replyTo": "音乐达人小李"
+      }
+    ]
+  }
+]

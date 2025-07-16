@@ -284,6 +284,67 @@ class DataService {
       }
     };
   }
+
+  // 获取评论数据
+  getComments() {
+    return this.readJsonFile('comments.json');
+  }
+
+  // 根据视频ID获取评论
+  getCommentsByVideoId(videoId) {
+    const comments = this.getComments();
+    const users = this.getUsers();
+    
+    return comments
+      .filter(comment => comment.videoId === parseInt(videoId))
+      .map(comment => {
+        const author = users.find(user => user.id === comment.authorId);
+        
+        return {
+          ...comment,
+          author: {
+            id: author.id,
+            displayName: author.displayName,
+            avatar: author.avatar,
+            verified: author.verified
+          },
+          formattedTime: this.formatDate(comment.publishDate),
+          replies: comment.replies ? comment.replies.map(reply => {
+            const replyAuthor = users.find(user => user.id === reply.authorId);
+            return {
+              ...reply,
+              author: {
+                id: replyAuthor.id,
+                displayName: replyAuthor.displayName,
+                avatar: replyAuthor.avatar,
+                verified: replyAuthor.verified
+              },
+              formattedTime: this.formatDate(reply.publishDate)
+            };
+          }) : []
+        };
+      })
+      .sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate));
+  }
+
+  // 添加新评论（模拟）
+  addComment(videoId, authorId, content) {
+    const comments = this.getComments();
+    const newComment = {
+      id: Math.max(...comments.map(c => c.id)) + 1,
+      videoId: parseInt(videoId),
+      authorId: parseInt(authorId),
+      content: content,
+      likeCount: 0,
+      dislikeCount: 0,
+      publishDate: new Date().toISOString(),
+      replies: []
+    };
+    
+    // 在实际应用中，这里应该保存到数据库
+    // 这里只是模拟返回新评论
+    return newComment;
+  }
 }
 
 export default new DataService();
