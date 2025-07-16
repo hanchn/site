@@ -15,11 +15,23 @@
             <div class="user-profile">
                 <div class="profile-card">
                     <div class="profile-avatar">
-                        <%= user.name.charAt(0).toUpperCase() %>
+                        <% if (user.avatar) { %>
+                            <img src="<%= user.avatar %>" alt="<%= user.displayName || user.name %>的头像" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="avatar-fallback" style="display: none;">
+                                <%= (user.displayName || user.name).charAt(0).toUpperCase() %>
+                            </div>
+                        <% } else { %>
+                            <div class="avatar-fallback">
+                                <%= (user.displayName || user.name).charAt(0).toUpperCase() %>
+                            </div>
+                        <% } %>
                     </div>
                     <div class="profile-info">
-                        <h2 class="profile-name"><%= user.name %></h2>
+                        <h2 class="profile-name"><%= user.displayName || user.name %></h2>
                         <p class="profile-email"><%= user.email %></p>
+                        <% if (user.description) { %>
+                            <p class="profile-description"><%= user.description %></p>
+                        <% } %>
                         <div class="profile-meta">
                             <div class="meta-item">
                                 <span class="meta-label">用户ID:</span>

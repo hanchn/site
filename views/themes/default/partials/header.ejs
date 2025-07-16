@@ -56,7 +56,8 @@
       </button>
       <div class="user-menu">
         <button class="user-avatar">
-          <img src="/images/default-avatar.png" alt="用户头像" />
+          <img src="/images/avatars/default-avatar.png" alt="用户头像" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="avatar-fallback" style="display: none;">U</div>
         </button>
       </div>
     </div>
