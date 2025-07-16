@@ -1,0 +1,14 @@
+<div class="container">
+    <h1><%= title %></h1>
+    <p class="error-message"><%= message %></p>
+    
+    <% if (error && error.status) { %>
+        <p class="error-status">错误代码: <%= error.status %></p>
+    <% } %>
+    
+    <% if (error && error.stack && typeof error.stack === 'string') { %>
+        <pre class="error-stack"><%= error.stack %></pre>
+    <% } %>
+    
+    <a href="/" class="btn btn-primary">返回首页</a>
+</div>
