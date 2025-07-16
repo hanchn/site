@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
+import dataService from './mock/services/dataService.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -67,12 +68,20 @@ app.use('/users', usersRouter);
 
 // 404错误处理
 app.use((req, res, next) => {
-    res.status(404).render('error', {
-        title: '页面未找到',
-        message: '抱歉，您访问的页面不存在',
-        error: { status: 404 },
-        pageStyle: 'error'  // 指定使用error.css
-    });
+    try {
+        const pageData = dataService.getPageData();
+        res.status(404).render('error', {
+            title: `${pageData.site.name || 'VideoSite'} - 页面未找到`,
+            message: '抱歉，您访问的页面不存在',
+            error: { status: 404 },
+            pageStyle: 'error',
+            currentPath: req.path,
+            ...pageData
+        });
+    } catch (error) {
+        console.error('Error in 404 handler:', error);
+        res.status(404).send('页面未找到');
+    }
 });
 
 // 错误处理中间件
@@ -80,13 +89,21 @@ app.use((err, req, res, next) => {
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
     
-    res.status(err.status || 500);
-    res.render('error', {
-        title: '服务器错误',
-        message: err.message,
-        error: err,
-        pageStyle: 'error'  // 指定使用error.css
-    });
+    try {
+        const pageData = dataService.getPageData();
+        res.status(err.status || 500);
+        res.render('error', {
+            title: `${pageData.site.name || 'VideoSite'} - 服务器错误`,
+            message: err.message,
+            error: err,
+            pageStyle: 'error',
+            currentPath: req.path,
+            ...pageData
+        });
+    } catch (error) {
+        console.error('Error in error handler:', error);
+        res.status(500).send('服务器内部错误');
+    }
 });
 
 app.listen(PORT, () => {
