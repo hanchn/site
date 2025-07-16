@@ -1,0 +1,30 @@
+<nav class="main-navigation">
+  <ul class="nav-list">
+    <li class="nav-item">
+      <a href="/" class="nav-link <%= currentPath === '/' ? 'active' : '' %>"
+        >首页</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        href="/about"
+        class="nav-link <%= currentPath === '/about' ? 'active' : '' %>"
+        >关于</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        href="/users"
+        class="nav-link <%= currentPath === '/users' ? 'active' : '' %>"
+        >用户</a
+      >
+    </li>
+  </ul>
+
+  <!-- 移动端菜单按钮 -->
+  <button class="mobile-menu-toggle" aria-label="切换菜单">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>

@@ -12,7 +12,8 @@ const users = [
 router.get('/', (req, res) => {
   res.render('users/index', {
     title: '用户列表',
-    users: users
+    users: users,
+    pageStyle: 'users'  // 指定使用users.css
   });
 });
 
@@ -25,13 +26,15 @@ router.get('/:id', (req, res) => {
     return res.status(404).render('error', {
       title: '用户未找到',
       message: '指定的用户不存在',
-      error: { status: 404 }
+      error: { status: 404 },
+      pageStyle: 'error'  // 指定使用error.css
     });
   }
   
   res.render('users/detail', {
     title: `用户详情 - ${user.name}`,
-    user: user
+    user: user,
+    pageStyle: 'users'  // 指定使用users.css
   });
 });
 

@@ -70,7 +70,8 @@ app.use((req, res, next) => {
     res.status(404).render('error', {
         title: '页面未找到',
         message: '抱歉，您访问的页面不存在',
-        error: { status: 404 }
+        error: { status: 404 },
+        pageStyle: 'error'  // 指定使用error.css
     });
 });
 
@@ -83,7 +84,8 @@ app.use((err, req, res, next) => {
     res.render('error', {
         title: '服务器错误',
         message: err.message,
-        error: err
+        error: err,
+        pageStyle: 'error'  // 指定使用error.css
     });
 });
 
