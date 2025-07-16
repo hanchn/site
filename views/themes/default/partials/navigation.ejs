@@ -73,8 +73,8 @@
   <div class="sidebar-content">
     <!-- 主导航 -->
     <div class="nav-section">
-      <% if (navigation && navigation.main) { %> <% navigation.main.forEach(item
-      => { %>
+      <% if (navigation && navigation.main) { %> <%
+      navigation.main.forEach(function(item) { %>
       <a
         href="<%= item.url %>"
         class="nav-item <%= currentPath === item.url ? 'active' : '' %>"
@@ -106,7 +106,7 @@
     <!-- 次要导航 -->
     <div class="nav-section">
       <% if (navigation && navigation.secondary) { %> <%
-      navigation.secondary.forEach(item => { %>
+      navigation.secondary.forEach(function(item) { %>
       <a href="<%= item.url %>" class="nav-item">
         <svg class="nav-icon" viewBox="0 0 24 24">
           <% if (item.icon === 'history') { %>
@@ -134,7 +134,7 @@
     <div class="nav-section">
       <div class="nav-title">订阅内容</div>
       <% if (navigation && navigation.subscriptions) { %> <%
-      navigation.subscriptions.forEach(channel => { %>
+      navigation.subscriptions.forEach(function(channel) { %>
       <a href="<%= channel.url %>" class="nav-item channel-item">
         <div class="channel-avatar-container">
           <img
