@@ -233,6 +233,57 @@ class DataService {
   clearCache() {
     this.cache.clear();
   }
+
+  // 获取分页的收藏视频
+  getCollectionVideos(page = 1, limit = 12) {
+    const videos = this.getVideos();
+    const users = this.getUsers();
+    const categories = this.getCategories();
+    
+    // 模拟收藏数据，实际应该从数据库获取用户收藏的视频ID列表
+    const collectionVideoIds = videos.slice(0, Math.floor(videos.length * 0.7)).map(v => v.id);
+    
+    const collectionVideos = videos
+      .filter(video => collectionVideoIds.includes(video.id))
+      .map(video => {
+        const author = users.find(user => user.id === video.authorId);
+        const category = categories.find(cat => cat.id === video.categoryId);
+        
+        return {
+          ...video,
+          author: {
+            id: author.id,
+            displayName: author.displayName,
+            avatar: author.avatar,
+            verified: author.verified
+          },
+          category: {
+            name: category.name,
+            slug: category.slug,
+            color: category.color
+          },
+          formattedViewCount: this.formatNumber(video.viewCount),
+          formattedPublishDate: this.formatDate(video.publishDate)
+        };
+      });
+    
+    const total = collectionVideos.length;
+    const totalPages = Math.ceil(total / limit);
+    const offset = (page - 1) * limit;
+    const paginatedVideos = collectionVideos.slice(offset, offset + limit);
+    
+    return {
+      videos: paginatedVideos,
+      pagination: {
+        currentPage: page,
+        totalPages: totalPages,
+        totalItems: total,
+        hasNext: page < totalPages,
+        hasPrev: page > 1,
+        limit: limit
+      }
+    };
+  }
 }
 
 export default new DataService();

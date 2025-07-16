@@ -27,6 +27,12 @@
         "icon": "subscriptions"
       },
       {
+        "id": "collection",
+        "name": "我的收藏",
+        "url": "/collection",
+        "icon": "library"
+      },
+      {
         "id": "library",
         "name": "媒体库",
         "url": "/library",

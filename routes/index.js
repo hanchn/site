@@ -78,6 +78,31 @@ router.get('/search', function(req, res, next) {
   }
 });
 
+/* GET collection page. */
+router.get('/collection', function(req, res, next) {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 12;
+    
+    const collectionData = dataService.getCollectionVideos(page, limit);
+    const pageData = dataService.getPageData({
+      videos: collectionData.videos,
+      pagination: collectionData.pagination,
+      featuredCategories: dataService.getFeaturedCategories()
+    });
+    
+    res.render('pages/collection', {
+      title: `${pageData.site.name || 'VideoSite'} - 我的收藏`,
+      pageStyle: 'home',
+      currentPath: req.path,
+      ...pageData
+    });
+  } catch (error) {
+    console.error('Error loading collection page:', error);
+    next(error);
+  }
+});
+
 /* GET video detail page. */
 router.get('/videos/:id', function(req, res, next) {
   try {
