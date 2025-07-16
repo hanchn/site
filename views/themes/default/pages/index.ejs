@@ -205,6 +205,14 @@
   <div class="category-tabs">
     <div class="tabs-container">
       <button class="tab-item active" data-category="all">全部</button>
+      <button class="tab-item" data-category="trending">时下流行</button>
+      <button class="tab-item" data-category="music">音乐</button>
+      <button class="tab-item" data-category="gaming">游戏</button>
+      <button class="tab-item" data-category="news">新闻</button>
+      <button class="tab-item" data-category="sports">体育</button>
+      <button class="tab-item" data-category="learning">学习</button>
+      <button class="tab-item" data-category="tech">科技</button>
+      <button class="tab-item" data-category="entertainment">娱乐</button>
       <% categories.forEach(category => { %>
       <button class="tab-item" data-category="<%= category.slug %>">
         <%= category.name %>
@@ -218,21 +226,31 @@
     <% videos.forEach(video => { %>
     <div
       class="video-card"
-      data-category="<%= video.category ? video.category.name : 'all' %>"
+      data-category="<%= video.category ? video.category.slug : 'all' %>"
     >
       <div class="video-thumbnail">
         <a href="<%= video.url %>">
-          <img src="<%= video.thumbnail %>" alt="<%= video.title %>" />
+          <img
+            src="<%= video.thumbnail %>"
+            alt="<%= video.title %>"
+            loading="lazy"
+          />
           <div class="video-duration"><%= video.duration %></div>
         </a>
       </div>
       <div class="video-info">
         <div class="channel-avatar">
           <a href="/users/<%= video.author.id %>">
+            <% if (video.author.avatar) { %>
             <img
               src="<%= video.author.avatar %>"
               alt="<%= video.author.displayName %>"
             />
+            <% } else { %>
+            <div class="avatar-fallback">
+              <%= video.author.displayName.charAt(0).toUpperCase() %>
+            </div>
+            <% } %>
           </a>
         </div>
         <div class="video-details">
