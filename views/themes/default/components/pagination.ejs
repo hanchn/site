@@ -1,0 +1,80 @@
+<%
+  // 分页组件参数：
+  // - pagination: 分页数据对象
+  // - baseUrl: 基础URL（如 '/collection'）
+  // - queryParams: 额外的查询参数（可选）
+  
+  const baseUrl = locals.baseUrl || '/collection';
+  const queryParams = locals.queryParams || {};
+  
+  // 构建查询字符串
+  function buildUrl(page) {
+    const params = new URLSearchParams(queryParams);
+    params.set('page', page);
+    return `${baseUrl}?${params.toString()}`;
+  }
+%>
+
+<% if (pagination && pagination.totalPages > 1) { %>
+<div class="pagination-container">
+  <nav class="pagination" aria-label="分页导航">
+    <!-- 上一页按钮 -->
+    <% if (pagination.hasPrev) { %>
+      <a href="<%= buildUrl(pagination.currentPage - 1) %>" class="pagination-btn pagination-prev">
+        <svg viewBox="0 0 24 24" class="pagination-icon">
+          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+        </svg>
+        上一页
+      </a>
+    <% } %>
+    
+    <!-- 页码数字 -->
+    <div class="pagination-numbers">
+      <% 
+        const startPage = Math.max(1, pagination.currentPage - 2);
+        const endPage = Math.min(pagination.totalPages, pagination.currentPage + 2);
+      %>
+      
+      <!-- 第一页和省略号 -->
+      <% if (startPage > 1) { %>
+        <a href="<%= buildUrl(1) %>" class="pagination-number">1</a>
+        <% if (startPage > 2) { %>
+          <span class="pagination-ellipsis">...</span>
+        <% } %>
+      <% } %>
+      
+      <!-- 当前页附近的页码 -->
+      <% for (let i = startPage; i <= endPage; i++) { %>
+        <% if (i === pagination.currentPage) { %>
+          <span class="pagination-number active"><%= i %></span>
+        <% } else { %>
+          <a href="<%= buildUrl(i) %>" class="pagination-number"><%= i %></a>
+        <% } %>
+      <% } %>
+      
+      <!-- 最后一页和省略号 -->
+      <% if (endPage < pagination.totalPages) { %>
+        <% if (endPage < pagination.totalPages - 1) { %>
+          <span class="pagination-ellipsis">...</span>
+        <% } %>
+        <a href="<%= buildUrl(pagination.totalPages) %>" class="pagination-number"><%= pagination.totalPages %></a>
+      <% } %>
+    </div>
+    
+    <!-- 下一页按钮 -->
+    <% if (pagination.hasNext) { %>
+      <a href="<%= buildUrl(pagination.currentPage + 1) %>" class="pagination-btn pagination-next">
+        下一页
+        <svg viewBox="0 0 24 24" class="pagination-icon">
+          <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+        </svg>
+      </a>
+    <% } %>
+  </nav>
+  
+  <!-- 分页信息 -->
+  <div class="pagination-info">
+    共 <%= pagination.totalItems %> 个项目，第 <%= pagination.currentPage %> / <%= pagination.totalPages %> 页
+  </div>
+</div>
+<% } %>
