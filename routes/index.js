@@ -1,6 +1,7 @@
-const express = require('express');
+import express from 'express';
+import dataService from '../mock/services/dataService.js';
+
 const router = express.Router();
-const dataService = require('../mock/services/dataService');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -105,4 +106,4 @@ router.get('/videos/:id', function(req, res, next) {
   }
 });
 
-module.exports = router;
+export default router;
