@@ -1,49 +1,201 @@
-<div class="hero-section">
-    <div class="container">
-        <div class="hero-content">
-            <h1 class="hero-title"><%= title %></h1>
-            <p class="hero-subtitle"><%= message %></p>
+<!-- 英雄区域 -->
+<section class="hero-section">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">开启你的编程学习之旅</h1>
+        <p class="hero-subtitle">
+          汇聚一线大厂技术专家，提供优质的在线编程课程
+        </p>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">10000+</span>
+            <span class="stat-label">学习者</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">500+</span>
+            <span class="stat-label">优质课程</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">100+</span>
+            <span class="stat-label">实战项目</span>
+          </div>
         </div>
-    </div>
-</div>
-
-<section class="features-section">
-    <div class="container">
-        <h2 class="section-title">项目特性</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🚀</div>
-                <h3>Express框架</h3>
-                <p>快速、极简的Node.js Web框架</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎨</div>
-                <h3>EJS模板</h3>
-                <p>简单易用的JavaScript模板引擎</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>ES6支持</h3>
-                <p>使用现代JavaScript语法和模块系统</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎭</div>
-                <h3>主题系统</h3>
-                <p>灵活的主题切换和自定义功能</p>
-            </div>
+        <div class="hero-actions">
+          <a href="/courses" class="btn btn-primary btn-lg">开始学习</a>
+          <a href="/free-courses" class="btn btn-outline btn-lg">免费课程</a>
         </div>
+      </div>
+      <div class="hero-image">
+        <img src="/images/hero-coding.svg" alt="编程学习" class="hero-img" />
+      </div>
     </div>
+  </div>
 </section>
 
-<section class="cta-section">
-    <div class="container">
-        <div class="cta-content">
-            <h2>开始探索</h2>
-            <p>了解更多关于这个项目的信息</p>
-            <div class="cta-buttons">
-                <a href="/about" class="btn btn-primary">了解更多</a>
-                <a href="/users" class="btn btn-secondary">查看用户</a>
-            </div>
-        </div>
+<!-- 课程分类 -->
+<section class="categories-section">
+  <div class="container">
+    <h2 class="section-title">热门课程分类</h2>
+    <div class="categories-grid">
+      <div class="category-card">
+        <div class="category-icon">🌐</div>
+        <h3>前端开发</h3>
+        <p>HTML5 / Vue.js / React</p>
+        <span class="course-count">120+ 课程</span>
+      </div>
+      <div class="category-card">
+        <div class="category-icon">⚙️</div>
+        <h3>后端开发</h3>
+        <p>Java / Python / Node.js</p>
+        <span class="course-count">150+ 课程</span>
+      </div>
+      <div class="category-card">
+        <div class="category-icon">📱</div>
+        <h3>移动开发</h3>
+        <p>Flutter / React Native</p>
+        <span class="course-count">80+ 课程</span>
+      </div>
+      <div class="category-card">
+        <div class="category-icon">🤖</div>
+        <h3>人工智能</h3>
+        <p>机器学习 / 深度学习</p>
+        <span class="course-count">60+ 课程</span>
+      </div>
+      <div class="category-card">
+        <div class="category-icon">🎨</div>
+        <h3>UI设计</h3>
+        <p>Figma / Sketch / 原型设计</p>
+        <span class="course-count">40+ 课程</span>
+      </div>
+      <div class="category-card">
+        <div class="category-icon">🔧</div>
+        <h3>运维测试</h3>
+        <p>Docker / K8s / 自动化测试</p>
+        <span class="course-count">50+ 课程</span>
+      </div>
     </div>
+  </div>
+</section>
+
+<!-- 推荐课程 -->
+<section class="featured-courses">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">精品推荐</h2>
+      <a href="/courses" class="view-all">查看全部 →</a>
+    </div>
+    <div class="courses-grid">
+      <div class="course-card">
+        <div class="course-image">
+          <img src="/images/course-vue.jpg" alt="Vue.js实战" />
+          <div class="course-badge">热门</div>
+        </div>
+        <div class="course-content">
+          <h3 class="course-title">Vue.js 3.0 全家桶实战</h3>
+          <p class="course-instructor">张老师 · 前端架构师</p>
+          <div class="course-meta">
+            <span class="course-level">中级</span>
+            <span class="course-students">2.3万人学习</span>
+          </div>
+          <div class="course-price">
+            <span class="current-price">¥199</span>
+            <span class="original-price">¥299</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-image">
+          <img src="/images/course-python.jpg" alt="Python数据分析" />
+          <div class="course-badge free">免费</div>
+        </div>
+        <div class="course-content">
+          <h3 class="course-title">Python数据分析入门</h3>
+          <p class="course-instructor">李老师 · 数据科学家</p>
+          <div class="course-meta">
+            <span class="course-level">初级</span>
+            <span class="course-students">1.8万人学习</span>
+          </div>
+          <div class="course-price">
+            <span class="current-price">免费</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-image">
+          <img src="/images/course-react.jpg" alt="React项目实战" />
+          <div class="course-badge">新课</div>
+        </div>
+        <div class="course-content">
+          <h3 class="course-title">React 18 企业级项目实战</h3>
+          <p class="course-instructor">王老师 · 全栈工程师</p>
+          <div class="course-meta">
+            <span class="course-level">高级</span>
+            <span class="course-students">5600人学习</span>
+          </div>
+          <div class="course-price">
+            <span class="current-price">¥399</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 学习路径 -->
+<section class="learning-paths">
+  <div class="container">
+    <h2 class="section-title">系统化学习路径</h2>
+    <div class="paths-grid">
+      <div class="path-card">
+        <div class="path-header">
+          <h3>前端工程师</h3>
+          <span class="path-duration">6个月</span>
+        </div>
+        <div class="path-steps">
+          <div class="step">HTML/CSS基础</div>
+          <div class="step">JavaScript进阶</div>
+          <div class="step">Vue/React框架</div>
+          <div class="step">项目实战</div>
+        </div>
+        <div class="path-footer">
+          <span class="path-students">8000+ 学员</span>
+          <a href="/path/frontend" class="btn btn-sm">开始学习</a>
+        </div>
+      </div>
+
+      <div class="path-card">
+        <div class="path-header">
+          <h3>后端工程师</h3>
+          <span class="path-duration">8个月</span>
+        </div>
+        <div class="path-steps">
+          <div class="step">Java基础</div>
+          <div class="step">Spring框架</div>
+          <div class="step">数据库设计</div>
+          <div class="step">微服务架构</div>
+        </div>
+        <div class="path-footer">
+          <span class="path-students">6500+ 学员</span>
+          <a href="/path/backend" class="btn btn-sm">开始学习</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA区域 -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2>加入我们的学习社区</h2>
+      <p>与万千学习者一起成长，获得专业指导和职业发展机会</p>
+      <div class="cta-buttons">
+        <a href="/register" class="btn btn-primary btn-lg">免费注册</a>
+        <a href="/enterprise" class="btn btn-outline btn-lg">企业培训</a>
+      </div>
+    </div>
+  </div>
 </section>

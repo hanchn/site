@@ -1,23 +1,63 @@
 <nav class="main-navigation">
   <ul class="nav-list">
     <li class="nav-item">
-      <a href="/" class="nav-link <%= currentPath === '/' ? 'active' : '' %>"
-        >首页</a
+      <a href="/" class="nav-link <%= currentPath === '/' ? 'active' : '' %>">
+        <i class="nav-icon">🏠</i>
+        <span>首页</span>
+      </a>
+    </li>
+    <li class="nav-item dropdown">
+      <a
+        href="/courses"
+        class="nav-link <%= currentPath.startsWith('/courses') ? 'active' : '' %>"
       >
+        <i class="nav-icon">📚</i>
+        <span>课程</span>
+        <i class="dropdown-arrow">▼</i>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a href="/courses/frontend">前端开发</a></li>
+        <li><a href="/courses/backend">后端开发</a></li>
+        <li><a href="/courses/mobile">移动开发</a></li>
+        <li><a href="/courses/ai">人工智能</a></li>
+        <li><a href="/courses/design">UI设计</a></li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <a
+        href="/path"
+        class="nav-link <%= currentPath === '/path' ? 'active' : '' %>"
+      >
+        <i class="nav-icon">🛤️</i>
+        <span>学习路径</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        href="/practice"
+        class="nav-link <%= currentPath === '/practice' ? 'active' : '' %>"
+      >
+        <i class="nav-icon">💻</i>
+        <span>实战项目</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        href="/community"
+        class="nav-link <%= currentPath === '/community' ? 'active' : '' %>"
+      >
+        <i class="nav-icon">👥</i>
+        <span>社区</span>
+      </a>
     </li>
     <li class="nav-item">
       <a
         href="/about"
         class="nav-link <%= currentPath === '/about' ? 'active' : '' %>"
-        >关于</a
       >
-    </li>
-    <li class="nav-item">
-      <a
-        href="/users"
-        class="nav-link <%= currentPath === '/users' ? 'active' : '' %>"
-        >用户</a
-      >
+        <i class="nav-icon">ℹ️</i>
+        <span>关于</span>
+      </a>
     </li>
   </ul>
 

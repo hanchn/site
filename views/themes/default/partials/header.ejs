@@ -1,10 +1,39 @@
 <header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="logo">
-                <a href="/">Express + EJS</a>
-            </div>
-            <%- include('./navigation') %>
+  <div class="container">
+    <div class="header-top">
+      <div class="header-left">
+        <div class="logo">
+          <a href="/">
+            <img src="/images/logo.png" alt="学习平台" class="logo-img" />
+            <span class="logo-text">学习平台</span>
+          </a>
         </div>
+      </div>
+
+      <div class="header-center">
+        <div class="search-container">
+          <form class="search-form" action="/search" method="GET">
+            <input
+              type="text"
+              name="q"
+              placeholder="搜索课程、讲师、知识点..."
+              class="search-input"
+            />
+            <button type="submit" class="search-btn">
+              <i class="search-icon">🔍</i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div class="user-actions">
+          <a href="/login" class="btn btn-outline">登录</a>
+          <a href="/register" class="btn btn-primary">注册</a>
+        </div>
+      </div>
     </div>
+
+    <div class="header-nav"><%- include('./navigation') %></div>
+  </div>
 </header>
