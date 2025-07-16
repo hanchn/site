@@ -9,7 +9,8 @@
       </button>
       <a href="/" class="logo">
         <% if (site && site.logo) { %>
-          <img src="<%= site.logo %>" alt="<%= site.name || 'VideoSite' %>" class="logo-img">
+          <img src="<%= site.logo %>" alt="<%= site.name || 'VideoSite' %>" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+          <span class="logo-text" style="display: none;"><%= site.name || 'VideoSite' %></span>
         <% } else { %>
           <span class="logo-text"><%= site.name || 'VideoSite' %></span>
         <% } %>
@@ -43,7 +44,12 @@
       </button>
       <div class="user-menu">
         <button class="user-avatar">
-          <img src="/images/default-avatar.jpg" alt="用户头像">
+          <img src="/images/defaults/avatar.jpg" alt="用户头像" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+          </div>
         </button>
       </div>
     </div>
