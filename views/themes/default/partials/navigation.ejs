@@ -71,75 +71,74 @@
 
 <nav class="sidebar" id="sidebar">
   <div class="sidebar-content">
-    <!-- 主要导航 -->
+    <!-- 主导航 -->
     <div class="nav-section">
-      <a href="/" class="nav-item <%= currentPath === '/' ? 'active' : '' %>">
-        <svg class="nav-icon" viewBox="0 0 24 24">
-          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-        </svg>
-        <span class="nav-text">首页</span>
-      </a>
-      <a href="/trending" class="nav-item">
-        <svg class="nav-icon" viewBox="0 0 24 24">
-          <path
-            d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"
-          />
-        </svg>
-        <span class="nav-text">时下流行</span>
-      </a>
-      <a
-        href="/users"
-        class="nav-item <%= currentPath === '/users' ? 'active' : '' %>"
-      >
-        <svg class="nav-icon" viewBox="0 0 24 24">
-          <path
-            d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zM4 18v-4h3v4h2v-7.5c0-.83.67-1.5 1.5-1.5S12 9.67 12 10.5V18h2v-4h3v4h2V8.5c0-1.93-1.57-3.5-3.5-3.5S12 6.57 12 8.5V18H4z"
-          />
-        </svg>
-        <span class="nav-text">用户</span>
-      </a>
+      <% if (navigation && navigation.main) { %>
+        <% navigation.main.forEach(item => { %>
+        <a href="<%= item.url %>" class="nav-item <%= currentPath === item.url ? 'active' : '' %>">
+          <svg class="nav-icon" viewBox="0 0 24 24">
+            <% if (item.icon === 'home') { %>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            <% } else if (item.icon === 'trending') { %>
+              <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+            <% } else if (item.icon === 'subscriptions') { %>
+              <path d="M20 8H4V6h16v2zm-2-6H6v2h12V2zm4 10v8c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2v-8c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2zm-6 4l-6-3.27v6.53L16 16z"/>
+            <% } else if (item.icon === 'library') { %>
+              <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/>
+            <% } %>
+          </svg>
+          <span class="nav-text"><%= item.name %></span>
+        </a>
+        <% }); %>
+      <% } %>
     </div>
 
     <div class="nav-divider"></div>
 
-    <!-- 资料库 -->
+    <!-- 次要导航 -->
     <div class="nav-section">
-      <a href="/library" class="nav-item">
-        <svg class="nav-icon" viewBox="0 0 24 24">
-          <path
-            d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"
-          />
-        </svg>
-        <span class="nav-text">媒体库</span>
-      </a>
-      <a href="/history" class="nav-item">
-        <svg class="nav-icon" viewBox="0 0 24 24">
-          <path
-            d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"
-          />
-        </svg>
-        <span class="nav-text">观看记录</span>
-      </a>
+      <% if (navigation && navigation.secondary) { %>
+        <% navigation.secondary.forEach(item => { %>
+        <a href="<%= item.url %>" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24">
+            <% if (item.icon === 'history') { %>
+              <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
+            <% } else if (item.icon === 'watchlater') { %>
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/>
+            <% } else if (item.icon === 'liked') { %>
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            <% } %>
+          </svg>
+          <span class="nav-text"><%= item.name %></span>
+        </a>
+        <% }); %>
+      <% } %>
     </div>
 
     <div class="nav-divider"></div>
 
-    <!-- 更多功能 -->
+    <!-- 订阅频道 -->
     <div class="nav-section">
-      <a
-        href="/about"
-        class="nav-item <%= currentPath === '/about' ? 'active' : '' %>"
-      >
-        <svg class="nav-icon" viewBox="0 0 24 24">
-          <path
-            d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M13,17h-2v-6h2V17z M13,9h-2V7h2V9z"
-          />
-        </svg>
-        <span class="nav-text">关于</span>
-      </a>
+      <div class="nav-title">订阅内容</div>
+      <% if (navigation && navigation.subscriptions) { %>
+        <% navigation.subscriptions.forEach(channel => { %>
+        <a href="<%= channel.url %>" class="nav-item channel-item">
+          <img src="<%= channel.avatar %>" alt="<%= channel.name %>" class="channel-avatar">
+          <span class="nav-text">
+            <%= channel.name %>
+            <% if (channel.verified) { %>
+              <span class="verified-badge">✓</span>
+            <% } %>
+            <% if (channel.hasNewContent) { %>
+              <span class="new-content-indicator">•</span>
+            <% } %>
+          </span>
+        </a>
+        <% }); %>
+      <% } %>
     </div>
   </div>
 </nav>
 
-<!-- 遮罩层 -->
+<!-- 侧边栏遮罩层 -->
 <div class="sidebar-overlay" id="sidebarOverlay"></div>

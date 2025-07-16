@@ -5,7 +5,9 @@
     "slug": "tech",
     "description": "科技相关内容",
     "color": "#007bff",
-    "icon": "tech"
+    "icon": "tech",
+    "featured": true,
+    "videoCount": 1250
   },
   {
     "id": 2,
@@ -13,7 +15,9 @@
     "slug": "music",
     "description": "音乐相关内容",
     "color": "#e91e63",
-    "icon": "music"
+    "icon": "music",
+    "featured": true,
+    "videoCount": 890
   },
   {
     "id": 3,
@@ -21,7 +25,9 @@
     "slug": "food",
     "description": "美食相关内容",
     "color": "#ff9800",
-    "icon": "food"
+    "icon": "food",
+    "featured": true,
+    "videoCount": 567
   },
   {
     "id": 4,
@@ -29,7 +35,9 @@
     "slug": "gaming",
     "description": "游戏相关内容",
     "color": "#9c27b0",
-    "icon": "gaming"
+    "icon": "gaming",
+    "featured": true,
+    "videoCount": 2340
   },
   {
     "id": 5,
@@ -37,6 +45,38 @@
     "slug": "education",
     "description": "教育学习内容",
     "color": "#4caf50",
-    "icon": "education"
+    "icon": "education",
+    "featured": true,
+    "videoCount": 1890
+  },
+  {
+    "id": 6,
+    "name": "娱乐",
+    "slug": "entertainment",
+    "description": "娱乐内容",
+    "color": "#f44336",
+    "icon": "entertainment",
+    "featured": false,
+    "videoCount": 3456
+  },
+  {
+    "id": 7,
+    "name": "体育",
+    "slug": "sports",
+    "description": "体育运动",
+    "color": "#ff5722",
+    "icon": "sports",
+    "featured": false,
+    "videoCount": 1234
+  },
+  {
+    "id": 8,
+    "name": "新闻",
+    "slug": "news",
+    "description": "新闻资讯",
+    "color": "#607d8b",
+    "icon": "news",
+    "featured": false,
+    "videoCount": 789
   }
 ]

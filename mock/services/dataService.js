@@ -24,8 +24,25 @@ class DataService {
       return data;
     } catch (error) {
       console.error(`Error reading ${filename}:`, error);
-      return [];
+      return filename === 'siteConfig.json' ? {} : [];
     }
+  }
+
+  // 获取网站配置
+  getSiteConfig() {
+    return this.readJsonFile('siteConfig.json');
+  }
+
+  // 获取导航数据
+  getNavigationData() {
+    const config = this.getSiteConfig();
+    return config.navigation || {};
+  }
+
+  // 获取订阅频道列表
+  getSubscribedChannels() {
+    const navigation = this.getNavigationData();
+    return navigation.subscriptions || [];
   }
 
   // 获取所有用户
@@ -93,6 +110,12 @@ class DataService {
     return this.readJsonFile('categories.json');
   }
 
+  // 获取特色分类
+  getFeaturedCategories() {
+    const categories = this.getCategories();
+    return categories.filter(category => category.featured);
+  }
+
   // 根据ID获取分类
   getCategoryById(id) {
     const categories = this.getCategories();
@@ -145,6 +168,7 @@ class DataService {
         },
         category: {
           name: category.name,
+          slug: category.slug,
           color: category.color
         },
         // 格式化数据
@@ -154,10 +178,28 @@ class DataService {
     });
   }
 
+  // 获取页面完整数据（包含网站配置、导航等）
+  getPageData(additionalData = {}) {
+    const siteConfig = this.getSiteConfig();
+    const navigation = this.getNavigationData();
+    const categories = this.getCategories();
+    
+    return {
+      site: siteConfig.site || {},
+      navigation: navigation,
+      categories: categories,
+      ...additionalData
+    };
+  }
+
   // 格式化数字
   formatNumber(num) {
-    if (num >= 1000000) {
-      return (num / 1000000).toFixed(1) + '万';
+    if (num >= 10000000) {
+      return (num / 10000000).toFixed(1) + '千万';
+    } else if (num >= 1000000) {
+      return (num / 1000000).toFixed(1) + '百万';
+    } else if (num >= 10000) {
+      return (num / 10000).toFixed(1) + '万';
     } else if (num >= 1000) {
       return (num / 1000).toFixed(1) + 'K';
     }

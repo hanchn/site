@@ -205,137 +205,100 @@
   <div class="category-tabs">
     <div class="tabs-container">
       <button class="tab-item active" data-category="all">全部</button>
-      <button class="tab-item" data-category="trending">时下流行</button>
-      <button class="tab-item" data-category="music">音乐</button>
-      <button class="tab-item" data-category="gaming">游戏</button>
-      <button class="tab-item" data-category="news">新闻</button>
-      <button class="tab-item" data-category="sports">体育</button>
-      <button class="tab-item" data-category="learning">学习</button>
-      <button class="tab-item" data-category="tech">科技</button>
-      <button class="tab-item" data-category="entertainment">娱乐</button>
-      <% if (typeof categories !== 'undefined' && categories) { %>
-        <% categories.forEach(category => { %>
-        <button class="tab-item" data-category="<%= category.slug %>">
-          <%= category.name %>
-        </button>
-        <% }); %>
-      <% } %>
+      <% if (categories && categories.length > 0) { %> <%
+      categories.forEach(category => { %>
+      <button class="tab-item" data-category="<%= category.slug %>">
+        <%= category.name %>
+      </button>
+      <% }); %> <% } %>
     </div>
   </div>
 
   <!-- 视频网格 -->
   <div class="video-grid">
-    <% if (typeof videos !== 'undefined' && videos) { %>
-      <% videos.forEach(video => { %>
-      <div class="video-card" data-category="<%= video.category ? video.category.slug : 'all' %>">
-        <div class="video-thumbnail">
-          <a href="<%= video.url %>">
-            <% if (video.thumbnail) { %>
+    <% if (videos && videos.length > 0) { %> <% videos.forEach(video => { %>
+    <div
+      class="video-card"
+      data-category="<%= video.category ? video.category.slug : 'all' %>"
+    >
+      <div class="video-thumbnail">
+        <a href="<%= video.url %>">
+          <% if (video.thumbnail) { %>
+          <img
+            src="<%= video.thumbnail %>"
+            alt="<%= video.title %>"
+            loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          />
+          <% } %>
+          <div
+            class="thumbnail-placeholder"
+            style="<%= video.thumbnail ? 'display: none;' : 'display: flex;' %>"
+          >
+            <svg viewBox="0 0 24 24" class="play-icon">
+              <path d="M8 5v14l11-7z" fill="currentColor" />
+            </svg>
+            <span class="placeholder-text">视频封面</span>
+          </div>
+          <div class="video-duration"><%= video.duration || '0:00' %></div>
+        </a>
+      </div>
+      <div class="video-info">
+        <div class="channel-avatar">
+          <a href="/users/<%= video.author ? video.author.id : '#' %>">
+            <% if (video.author && video.author.avatar) { %>
             <img
-              src="<%= video.thumbnail %>"
-              alt="<%= video.title %>"
-              loading="lazy"
+              src="<%= video.author.avatar %>"
+              alt="<%= video.author.displayName %>"
               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
             />
             <% } %>
-            <div class="thumbnail-placeholder" style="<%= video.thumbnail ? 'display: none;' : 'display: flex;' %>">
-              <svg viewBox="0 0 24 24" class="play-icon">
-                <path d="M8 5v14l11-7z" fill="currentColor" />
-              </svg>
-              <span class="placeholder-text">视频封面</span>
+            <div
+              class="avatar-fallback"
+              style="
+                <%=(video.author && video.author.avatar)? 'display: none;' : 'display: flex;'
+                  %>;
+              "
+            >
+              <%= video.author ?
+              video.author.displayName.charAt(0).toUpperCase() : 'U' %>
             </div>
-            <div class="video-duration"><%= video.duration || '0:00' %></div>
           </a>
         </div>
-        <div class="video-info">
-          <div class="channel-avatar">
-            <a href="/users/<%= video.author ? video.author.id : '#' %>">
-              <% if (video.author && video.author.avatar) { %>
-              <img
-                src="<%= video.author.avatar %>"
-                alt="<%= video.author.displayName %>"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        <div class="video-details">
+          <h3 class="video-title">
+            <a href="<%= video.url %>"><%= video.title %></a>
+          </h3>
+          <div class="video-meta">
+            <div class="channel-name">
+              <a href="/users/<%= video.author ? video.author.id : '#' %>">
+                <%= video.author ? video.author.displayName : '未知用户' %> <%
+                if (video.author && video.author.verified) { %>
+                <span class="verified-badge">✓</span>
+                <% } %>
+              </a>
+            </div>
+            <div class="video-stats">
+              <%= video.formattedViewCount || '0' %>次观看 • <%=
+              video.formattedPublishDate || '刚刚' %>
+            </div>
+          </div>
+        </div>
+        <div class="video-menu">
+          <button class="menu-btn" data-video-id="<%= video.id %>">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
               />
-              <% } %>
-              <div class="avatar-fallback" style="<%= (video.author && video.author.avatar) ? 'display: none;' : 'display: flex;' %>">
-                <%= video.author ? video.author.displayName.charAt(0).toUpperCase() : 'U' %>
-              </div>
-            </a>
-          </div>
-          <div class="video-details">
-            <h3 class="video-title">
-              <a href="<%= video.url %>"><%= video.title %></a>
-            </h3>
-            <div class="video-meta">
-              <div class="channel-name">
-                <a href="/users/<%= video.author ? video.author.id : '#' %>">
-                  <%= video.author ? video.author.displayName : '未知用户' %>
-                  <% if (video.author && video.author.verified) { %>
-                  <span class="verified-badge">✓</span>
-                  <% } %>
-                </a>
-              </div>
-              <div class="video-stats">
-                <%= video.formattedViewCount || '0' %>次观看 • <%= video.formattedPublishDate || '刚刚' %>
-              </div>
-            </div>
-          </div>
-          <div class="video-menu">
-            <button class="menu-btn" data-video-id="<%= video.id %>">
-              <svg viewBox="0 0 24 24">
-                <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
-              </svg>
-            </button>
-          </div>
+            </svg>
+          </button>
         </div>
       </div>
-      <% }); %>
-    <% } else { %>
-      <!-- 默认示例内容 -->
-      <% for(let i = 1; i <= 12; i++) { %>
-      <div class="video-card" data-category="all">
-        <div class="video-thumbnail">
-          <a href="#">
-            <div class="thumbnail-placeholder" style="display: flex;">
-              <svg viewBox="0 0 24 24" class="play-icon">
-                <path d="M8 5v14l11-7z" fill="currentColor" />
-              </svg>
-              <span class="placeholder-text">示例视频 <%= i %></span>
-            </div>
-            <div class="video-duration">10:30</div>
-          </a>
-        </div>
-        <div class="video-info">
-          <div class="channel-avatar">
-            <a href="#">
-              <div class="avatar-fallback" style="display: flex;">
-                U
-              </div>
-            </a>
-          </div>
-          <div class="video-details">
-            <h3 class="video-title">
-              <a href="#">示例视频标题 <%= i %> - 这是一个很长的标题用来测试换行效果</a>
-            </h3>
-            <div class="video-meta">
-              <div class="channel-name">
-                <a href="#">示例频道 <%= i %></a>
-              </div>
-              <div class="video-stats">
-                <%= Math.floor(Math.random() * 1000) + 100 %>次观看 • <%= Math.floor(Math.random() * 30) + 1 %>天前
-              </div>
-            </div>
-          </div>
-          <div class="video-menu">
-            <button class="menu-btn">
-              <svg viewBox="0 0 24 24">
-                <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-      <% } %>
+    </div>
+    <% }); %> <% } else { %>
+    <div class="no-videos">
+      <p>暂无视频内容</p>
+    </div>
     <% } %>
   </div>
 </div>

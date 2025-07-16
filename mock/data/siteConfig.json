@@ -1,0 +1,125 @@
+{
+  "site": {
+    "name": "VideoSite",
+    "logo": "/images/logo.png",
+    "description": "优质视频分享平台",
+    "keywords": ["视频", "分享", "学习", "娱乐"]
+  },
+  "navigation": {
+    "main": [
+      {
+        "id": "home",
+        "name": "首页",
+        "url": "/",
+        "icon": "home",
+        "active": true
+      },
+      {
+        "id": "trending",
+        "name": "时下流行",
+        "url": "/trending",
+        "icon": "trending"
+      },
+      {
+        "id": "subscriptions",
+        "name": "订阅内容",
+        "url": "/subscriptions",
+        "icon": "subscriptions"
+      },
+      {
+        "id": "library",
+        "name": "媒体库",
+        "url": "/library",
+        "icon": "library"
+      }
+    ],
+    "secondary": [
+      {
+        "id": "history",
+        "name": "观看记录",
+        "url": "/history",
+        "icon": "history"
+      },
+      {
+        "id": "watchlater",
+        "name": "稍后观看",
+        "url": "/watchlater",
+        "icon": "watchlater"
+      },
+      {
+        "id": "liked",
+        "name": "喜欢的视频",
+        "url": "/liked",
+        "icon": "liked"
+      }
+    ],
+    "subscriptions": [
+      {
+        "id": 1,
+        "name": "科技大师",
+        "avatar": "/images/avatars/user1.jpg",
+        "url": "/users/1",
+        "verified": true,
+        "hasNewContent": true
+      },
+      {
+        "id": 2,
+        "name": "音乐爱好者",
+        "avatar": "/images/avatars/user2.jpg",
+        "url": "/users/2",
+        "verified": false,
+        "hasNewContent": false
+      },
+      {
+        "id": 3,
+        "name": "编程高手",
+        "avatar": "/images/avatars/user3.jpg",
+        "url": "/users/3",
+        "verified": true,
+        "hasNewContent": true
+      },
+      {
+        "id": 4,
+        "name": "美食天地",
+        "avatar": "/images/avatars/user4.jpg",
+        "url": "/users/4",
+        "verified": true,
+        "hasNewContent": false
+      }
+    ]
+  },
+  "footer": {
+    "links": [
+      {
+        "title": "关于",
+        "items": [
+          { "name": "关于我们", "url": "/about" },
+          { "name": "联系我们", "url": "/contact" },
+          { "name": "招聘信息", "url": "/careers" }
+        ]
+      },
+      {
+        "title": "帮助",
+        "items": [
+          { "name": "帮助中心", "url": "/help" },
+          { "name": "社区准则", "url": "/guidelines" },
+          { "name": "版权政策", "url": "/copyright" }
+        ]
+      },
+      {
+        "title": "法律",
+        "items": [
+          { "name": "隐私政策", "url": "/privacy" },
+          { "name": "服务条款", "url": "/terms" },
+          { "name": "Cookie政策", "url": "/cookies" }
+        ]
+      }
+    ],
+    "copyright": "© 2024 VideoSite. 保留所有权利。",
+    "socialLinks": [
+      { "name": "微博", "url": "#", "icon": "weibo" },
+      { "name": "微信", "url": "#", "icon": "wechat" },
+      { "name": "QQ", "url": "#", "icon": "qq" }
+    ]
+  }
+}

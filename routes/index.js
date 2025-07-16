@@ -7,14 +7,16 @@ const router = express.Router();
 router.get('/', function(req, res, next) {
   try {
     const videos = dataService.getHomePageVideos();
-    const categories = dataService.getCategories();
+    const pageData = dataService.getPageData({
+      videos: videos,
+      featuredCategories: dataService.getFeaturedCategories()
+    });
     
     res.render('pages/index', {
-      title: 'VideoSite - 首页',
+      title: `${pageData.site.name || 'VideoSite'} - 首页`,
       pageStyle: 'home',
       currentPath: req.path,
-      videos: videos,
-      categories: categories
+      ...pageData
     });
   } catch (error) {
     console.error('Error loading home page:', error);
@@ -24,25 +26,32 @@ router.get('/', function(req, res, next) {
 
 /* GET about page. */
 router.get('/about', function(req, res, next) {
-  res.render('pages/about', {
-    title: 'VideoSite - 关于我们',
-    pageStyle: 'about',
-    currentPath: req.path
-  });
+  try {
+    const pageData = dataService.getPageData();
+    
+    res.render('pages/about', {
+      title: `${pageData.site.name || 'VideoSite'} - 关于我们`,
+      pageStyle: 'about',
+      currentPath: req.path,
+      ...pageData
+    });
+  } catch (error) {
+    console.error('Error loading about page:', error);
+    next(error);
+  }
 });
 
 /* GET trending page. */
 router.get('/trending', function(req, res, next) {
   try {
     const videos = dataService.getTrendingVideos(20);
-    const categories = dataService.getCategories();
+    const pageData = dataService.getPageData({ videos });
     
     res.render('pages/trending', {
-      title: 'VideoSite - 时下流行',
+      title: `${pageData.site.name || 'VideoSite'} - 时下流行`,
       pageStyle: 'home',
       currentPath: req.path,
-      videos: videos,
-      categories: categories
+      ...pageData
     });
   } catch (error) {
     console.error('Error loading trending page:', error);
@@ -55,15 +64,13 @@ router.get('/search', function(req, res, next) {
   try {
     const query = req.query.q || '';
     const videos = query ? dataService.searchVideos(query, 20) : [];
-    const categories = dataService.getCategories();
+    const pageData = dataService.getPageData({ videos, query });
     
     res.render('pages/search', {
-      title: `VideoSite - 搜索: ${query}`,
+      title: `${pageData.site.name || 'VideoSite'} - 搜索: ${query}`,
       pageStyle: 'home',
       currentPath: req.path,
-      query: query,
-      videos: videos,
-      categories: categories
+      ...pageData
     });
   } catch (error) {
     console.error('Error loading search page:', error);
@@ -78,10 +85,12 @@ router.get('/videos/:id', function(req, res, next) {
     const video = dataService.getVideoWithDetails(videoId);
     
     if (!video) {
+      const pageData = dataService.getPageData();
       return res.status(404).render('pages/error', {
-        title: 'VideoSite - 视频未找到',
+        title: `${pageData.site.name || 'VideoSite'} - 视频未找到`,
         pageStyle: 'error',
         currentPath: req.path,
+        ...pageData,
         error: {
           status: 404,
           message: '视频未找到'
@@ -93,12 +102,13 @@ router.get('/videos/:id', function(req, res, next) {
     const relatedVideos = dataService.getVideosByCategory(video.categoryId, 10)
       .filter(v => v.id !== video.id);
     
+    const pageData = dataService.getPageData({ video, relatedVideos });
+    
     res.render('pages/video', {
-      title: `VideoSite - ${video.title}`,
+      title: `${pageData.site.name || 'VideoSite'} - ${video.title}`,
       pageStyle: 'video',
       currentPath: req.path,
-      video: video,
-      relatedVideos: relatedVideos
+      ...pageData
     });
   } catch (error) {
     console.error('Error loading video page:', error);
