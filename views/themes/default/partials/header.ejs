@@ -1,39 +1,64 @@
-<header class="site-header">
-  <div class="container">
-    <div class="header-top">
-      <div class="header-left">
-        <div class="logo">
-          <a href="/">
-            <img src="/images/logo.png" alt="学习平台" class="logo-img" />
-            <span class="logo-text">学习平台</span>
-          </a>
-        </div>
-      </div>
+<header class="header">
+  <div class="header-container">
+    <!-- Logo区域 -->
+    <div class="header-left">
+      <button class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="/" class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24">
+          <path
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.58L19 8l-9 9z"
+          />
+        </svg>
+        <span class="logo-text">VideoSite</span>
+      </a>
+    </div>
 
-      <div class="header-center">
-        <div class="search-container">
-          <form class="search-form" action="/search" method="GET">
-            <input
-              type="text"
-              name="q"
-              placeholder="搜索课程、讲师、知识点..."
-              class="search-input"
+    <!-- 搜索区域 -->
+    <div class="header-center">
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="搜索" />
+        <button class="search-btn">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
             />
-            <button type="submit" class="search-btn">
-              <i class="search-icon">🔍</i>
-            </button>
-          </form>
-        </div>
-      </div>
-
-      <div class="header-right">
-        <div class="user-actions">
-          <a href="/login" class="btn btn-outline">登录</a>
-          <a href="/register" class="btn btn-primary">注册</a>
-        </div>
+          </svg>
+        </button>
+        <button class="voice-search">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"
+            />
+          </svg>
+        </button>
       </div>
     </div>
 
-    <div class="header-nav"><%- include('./navigation') %></div>
+    <!-- 用户区域 -->
+    <div class="header-right">
+      <button class="icon-btn create-btn">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"
+          />
+        </svg>
+      </button>
+      <button class="icon-btn notifications-btn">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"
+          />
+        </svg>
+      </button>
+      <div class="user-menu">
+        <button class="user-avatar">
+          <img src="/images/default-avatar.png" alt="用户头像" />
+        </button>
+      </div>
+    </div>
   </div>
 </header>
